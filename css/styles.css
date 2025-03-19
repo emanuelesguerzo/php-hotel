@@ -5,6 +5,46 @@
     box-sizing: border-box;
 }
 
-h1 {
+html {
+    font-family: "Roboto", sans-serif;
+}
+
+h2 {
     text-align: center;
+}
+
+/* Table */
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+}
+
+th {
+    text-align: center;
+    background-color: #1a6b3989;
+    padding: 10px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+    padding: 8px;
+}
+
+.vote,
+.parking {
+    text-align: center;
+}
+
+.distance {
+    text-align: right;
+}
+
+.not-found {
+    text-align: center;
+    font-weight: bold; 
+    padding: 10px;
 }
