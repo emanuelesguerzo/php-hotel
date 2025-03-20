@@ -9,29 +9,119 @@ html {
     font-family: "Roboto", sans-serif;
 }
 
+/* Layout */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+h1 {
+    text-align: center;
+    padding: 30px 0;
+}
+
+p {
+    margin-bottom: 25px;
+}
+
 h2 {
     text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Filters */
+form {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 30px;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttons-div {
+    display: flex;
+    gap: 10px;
+}
+
+.submit-btn,
+.reset-btn {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    color: #ffffff;
+}
+
+.parking-checkbox,
+.vote-div {
+    display: flex;
+    gap: 10px;
+}
+
+.submit-btn {
+    background-color: rgb(10, 10, 201);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.reset-btn {
+    background-color: rgb(210, 8, 8);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.submit-btn:hover,
+.reset-btn:hover {
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: rgb(49, 49, 244);
+}
+
+.reset-btn:hover {
+    background-color: rgb(236, 54, 54);
+}
+
+label[for="parking"],
+input[type="checkbox"] {
+    vertical-align: middle;
+}
+
+select {
+    text-align: center;
+    width: 70%;
 }
 
 /* Table */
 table {
     border-collapse: collapse;
-    margin: 20px auto;
-    width: 80%;
+    width: 100%;
 }
 
 th {
     text-align: center;
     background-color: #1a6b3989;
-    padding: 10px;
+    padding: 10px;  
 }
 
-table, th, td {
-    border: 1px solid black;
-}
+th, td {
+    border: 1px solid #00000058;
+} 
 
 td {
     padding: 8px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #2fbd653b;
 }
 
 .vote,

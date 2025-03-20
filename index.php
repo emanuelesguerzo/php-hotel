@@ -87,37 +87,55 @@ $filteredHotels = array_filter($hotels, function ($hotel) {
 
 <body>
 
-    <!-- Form -->
-    <form method="GET">
+    <div class="container">
+        
+        <!-- Main Title -->
+        <h1>Trova l'hotel che fa per te!</h1>
 
-        <!-- Parking Checkbox -->
-        <div>
-            <label for="check-parking">Parcheggio</label>
-            <input type="checkbox" id="check-parking" name="parking" value="1" <?php if (isset($_GET['parking'])) echo 'checked'; ?>>
-        </div>
+        <p>Trova l'hotel perfetto per te! Usa questi filtri per selezionare gli hotel in base al voto e alla disponibilità di parcheggio.</p>
 
-        <!-- Vote Select -->
-        <div>
-            <label for="vote">Voto</label>
-            <select name="vote" id="vote">
-                <option value="">Qualsiasi</option>
-                <option value="1" <?php if (isset($_GET['vote']) && $_GET['vote'] == 1) echo 'selected'; ?>>1 ⭐</option>
-                <option value="2" <?php if (isset($_GET['vote']) && $_GET['vote'] == 2) echo 'selected'; ?>>2 ⭐</option>
-                <option value="3" <?php if (isset($_GET['vote']) && $_GET['vote'] == 3) echo 'selected'; ?>>3 ⭐</option>
-                <option value="4" <?php if (isset($_GET['vote']) && $_GET['vote'] == 4) echo 'selected'; ?>>4 ⭐</option>
-                <option value="5" <?php if (isset($_GET['vote']) && $_GET['vote'] == 5) echo 'selected'; ?>>5 ⭐</option>
-            </select>
-        </div>
+        <!-- Form -->
+        <form method="GET">
 
-        <!-- Submit Button -->
-        <button type="submit">Filtra</button>
+            <div class="filters">
 
-        <!-- Reset Button -->
-        <button type="button" onclick="window.location.href='index.php'">Reset</button>
+                <!-- Parking Checkbox -->
+                <div class="parking-checkbox">
+                    <label for="parking">Parcheggio disponibile</label>
+                    <input type="checkbox" id="parking" name="parking" value="1" <?php if (isset($_GET['parking'])) echo 'checked'; ?>>
+                </div>
 
-    </form>
+                <!-- Vote Select -->
+                <div class="vote-div">
+                    <label for="vote">Voto</label>
+                    <select name="vote" id="vote">
+                        <option value="">Qualsiasi</option>
+                        <option value="1" <?php if (isset($_GET['vote']) && $_GET['vote'] == 1) echo 'selected'; ?>>1 ⭐</option>
+                        <option value="2" <?php if (isset($_GET['vote']) && $_GET['vote'] == 2) echo 'selected'; ?>>2 ⭐</option>
+                        <option value="3" <?php if (isset($_GET['vote']) && $_GET['vote'] == 3) echo 'selected'; ?>>3 ⭐</option>
+                        <option value="4" <?php if (isset($_GET['vote']) && $_GET['vote'] == 4) echo 'selected'; ?>>4 ⭐</option>
+                        <option value="5" <?php if (isset($_GET['vote']) && $_GET['vote'] == 5) echo 'selected'; ?>>5 ⭐</option>
+                    </select>
+                </div>
 
-    <!-- Main Title -->
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons-div">
+
+                <!-- Submit Button -->
+                <button class="submit-btn" type="submit">Filtra</button>
+
+                <!-- Reset Button -->
+                <button class="reset-btn" type="button" onclick="window.location.href='index.php'">Reset</button>
+
+            </div>
+
+        </form>
+
+
+
+    <!-- Subtitle -->
     <h2>Elenco degli Hotel</h2>
 
     <!-- Table -->
@@ -158,6 +176,8 @@ $filteredHotels = array_filter($hotels, function ($hotel) {
         <?php endif; ?>
 
     </table>
+
+    </div>
 
 </body>
 
