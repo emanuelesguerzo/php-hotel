@@ -1,6 +1,6 @@
 <?php
 
-// ARRAY ORIGINALE
+// Array Originale
 $hotels = [
 
     [
@@ -41,11 +41,8 @@ $hotels = [
 
 ];
 
-// ARRAY FILTRATO
+// Array Filtrato
 $filteredHotels = array_filter($hotels, function ($hotel) {
-
-    // isset() è una funzione di PHP che verifica se una variabile è stata dichiarata ed è diversa da null
-    // isset() aiuta a evitare errori quando controlliamo variabili che potrebbero non esistere
 
     // Controllo del filtro parcheggio
     if (isset($_GET['parking']) && $_GET['parking'] == '1' && !$hotel['parking']) {
@@ -80,105 +77,150 @@ $filteredHotels = array_filter($hotels, function ($hotel) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- Tab Title -->
     <title>PHP Hotels</title>
 </head>
 
 <body>
+    <div class="wrapper">
 
-    <div class="container">
-        
-        <!-- Main Title -->
-        <h1>Trova l'hotel che fa per te!</h1>
+        <!-- Header -->
+        <header>
+            <img src="./img/boolhotel-logo.png" class="logo" alt="Logo di Boolhotels">
+        </header>
 
-        <p>Trova l'hotel perfetto per te! Usa questi filtri per selezionare gli hotel in base al voto e alla disponibilità di parcheggio.</p>
+        <!-- Jumbo Image -->
+        <div class="jumbo-img">
+            <img src="./img/boolhotels-jumbo.png" alt="Paradise Vacation Vista">
+        </div>
 
-        <!-- Form -->
-        <form method="GET">
+        <!-- Container -->
+        <div class="container">
 
-            <div class="filters">
+            <!-- Main Title -->
+            <h1 class="main-title">Trova l'hotel che fa per te!</h1>
 
-                <!-- Parking Checkbox -->
-                <div class="parking-checkbox">
-                    <label for="parking">Parcheggio disponibile</label>
-                    <input type="checkbox" id="parking" name="parking" value="1" <?php if (isset($_GET['parking'])) echo 'checked'; ?>>
+            <p class="subtitle">Trova l'hotel perfetto per te! Usa questi filtri per selezionare gli hotel in base al voto e alla disponibilità di parcheggio.</p>
+
+            <!-- Form -->
+            <form method="GET">
+
+                <div class="filters">
+
+                    <!-- Vote Select -->
+                    <div class="vote-div">
+                        <label for="vote">Voto</label>
+                        <select name="vote" id="vote">
+                            <option value="">Qualsiasi</option>
+                            <option value="1" <?php if (isset($_GET['vote']) && $_GET['vote'] == 1) echo 'selected'; ?>>1 stella</i></option>
+                            <option value="2" <?php if (isset($_GET['vote']) && $_GET['vote'] == 2) echo 'selected'; ?>>2 stelle</i></option>
+                            <option value="3" <?php if (isset($_GET['vote']) && $_GET['vote'] == 3) echo 'selected'; ?>>3 stelle</i></option>
+                            <option value="4" <?php if (isset($_GET['vote']) && $_GET['vote'] == 4) echo 'selected'; ?>>4 stelle</i></option>
+                            <option value="5" <?php if (isset($_GET['vote']) && $_GET['vote'] == 5) echo 'selected'; ?>>5 stelle</i></option>
+                        </select>
+                    </div>
+
+                    <!-- Parking Checkbox -->
+                    <div class="parking-checkbox">
+                        <label for="parking">Parcheggio disponibile</label>
+                        <input type="checkbox" id="parking" name="parking" value="1" <?php if (isset($_GET['parking'])) echo 'checked'; ?>>
+                    </div>
+
                 </div>
 
-                <!-- Vote Select -->
-                <div class="vote-div">
-                    <label for="vote">Voto</label>
-                    <select name="vote" id="vote">
-                        <option value="">Qualsiasi</option>
-                        <option value="1" <?php if (isset($_GET['vote']) && $_GET['vote'] == 1) echo 'selected'; ?>>1 ⭐</option>
-                        <option value="2" <?php if (isset($_GET['vote']) && $_GET['vote'] == 2) echo 'selected'; ?>>2 ⭐</option>
-                        <option value="3" <?php if (isset($_GET['vote']) && $_GET['vote'] == 3) echo 'selected'; ?>>3 ⭐</option>
-                        <option value="4" <?php if (isset($_GET['vote']) && $_GET['vote'] == 4) echo 'selected'; ?>>4 ⭐</option>
-                        <option value="5" <?php if (isset($_GET['vote']) && $_GET['vote'] == 5) echo 'selected'; ?>>5 ⭐</option>
-                    </select>
+                <!-- Buttons -->
+                <div class="buttons-div">
+
+                    <!-- Reset Button -->
+                    <button class="reset-btn" type="button" onclick="window.location.href='index.php'"><i class="fa-solid fa-arrows-rotate"></i></button>
+
+                    <!-- Submit Button -->
+                    <button class="submit-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+                </div>
+
+            </form>
+
+            <!-- Table -->
+            <div class="table-wrapper">
+                <table>
+
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrizione</th>
+                            <th>Parcheggio</th>
+                            <th>Voto</th>
+                            <th>Centro (km)</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <?php if (count($filteredHotels) > 0) : ?>
+                        <tbody>
+                            <?php foreach ($filteredHotels as $hotel) : ?>
+                                <tr>
+                                    <td class="hotel-name"><?php echo $hotel["name"] ?></td>
+                                    <td class="description"><?php echo $hotel["description"] ?></td>
+                                    <td class="parking"><?php echo $hotel["parking"] ? "<i class='fa-solid fa-square-check'></i>" : "<i class='fa-solid fa-square-xmark'></i>" ?></td>
+                                    <td class="vote"><?php echo $hotel["vote"] ?> <i class="fa-regular fa-star"></i></td>
+                                    <td class="distance"><?php echo $hotel["distance_to_center"] ?> km</td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    <!-- Else -->
+                    <?php else : ?>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="not-found">
+                                    Nessun hotel soddisfa la tua ricerca.
+                                </td>
+                            </tr>
+                        </tbody>
+                    <?php endif; ?>
+
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+
+                <!-- Footer Logo -->
+                <div class="footer-logo">
+                    <img src="./img/boolhotel-logo.png" alt="Logo di Boolhotels" width="60px">
+                </div>
+
+                <!-- Footer Links -->
+                <div class="footer-links">
+                    <a href="#">Chi siamo</a>
+                    <a href="#">Contatti</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+
+                <!-- Footer Socials -->
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 </div>
 
             </div>
 
-            <!-- Buttons -->
-            <div class="buttons-div">
-
-                <!-- Submit Button -->
-                <button class="submit-btn" type="submit">Filtra</button>
-
-                <!-- Reset Button -->
-                <button class="reset-btn" type="button" onclick="window.location.href='index.php'">Reset</button>
-
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Boolhotels. Tutti i diritti riservati.</p>
             </div>
 
-        </form>
-
-
-
-    <!-- Subtitle -->
-    <h2>Elenco degli Hotel</h2>
-
-    <!-- Table -->
-    <table>
-
-        <!-- Table Head -->
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Parcheggio</th>
-                <th>Voto</th>
-                <th>Distanza dal centro</th>
-            </tr>
-        </thead>
-
-        <!-- Table Body -->
-        <?php if (count($filteredHotels) > 0) : ?>
-            <tbody>
-                <?php foreach ($filteredHotels as $hotel) : ?>
-                    <tr>
-                        <td><?php echo $hotel["name"] ?></td>
-                        <td><?php echo $hotel["description"] ?></td>
-                        <td class="parking"><?php echo $hotel["parking"] ? "✅" : "❌" ?></td>
-                        <td class="vote"><?php echo $hotel["vote"] ?> ⭐</td>
-                        <td class="distance"><?php echo $hotel["distance_to_center"] ?> km</td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        <?php else : ?>
-            <tbody>
-                <tr>
-                    <td colspan="5" class="not-found">
-                        Nessun hotel soddisfa la tua ricerca.
-                    </td>
-                </tr>
-            </tbody>
-        <?php endif; ?>
-
-    </table>
-
+        </footer>
     </div>
-
 </body>
-
 </html>

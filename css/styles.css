@@ -9,25 +9,70 @@ html {
     font-family: "Roboto", sans-serif;
 }
 
-/* Layout */
+/* LAYOUT */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
-    max-width: 1100px;
 }
 
-h1 {
-    text-align: center;
-    padding: 30px 0;
+body {
+    position: relative;
+    background-color: #2e7c4c89;
 }
 
-p {
+/* Layout - Jumbo Image */
+.jumbo-img {
+    position: absolute;
+    z-index: -1;
+}
+
+.jumbo-img img {
+    display: block;
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.7;
+}
+
+/* HEADER */
+header {
+    padding: 10px;
+    box-shadow: 0 0 15px 10px #00000033;
+    background-color: #5c977f;
     margin-bottom: 25px;
 }
 
-h2 {
+.logo {
+    width: 150px;
+}
+
+/* MAIN */
+/* Titolo principale */
+.main-title {
     text-align: center;
-    margin-bottom: 10px;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Paragrafo descrittivo */
+.subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #374151;
+    padding: 0 10px;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* Filters */
@@ -36,18 +81,48 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto 30px;
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 10px;
+    margin: 20px auto;
+    border-radius: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
 }
 
-.filters {
+/* Filters - Labels and inputs */
+label {
+    font-size: 0.8rem;
+    color: #374151;
+}
+
+/* Filters - Labels and inputs - Vote */
+.vote-div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
 }
 
+label[for="vote"] {
+    margin-bottom: 6px;
+}
+
+select {
+    text-align: center;
+    border-radius: 12px;
+    align-self: stretch;
+    margin-bottom: 3px;
+}
+
+/* Filters - Labels and inputs - Parking Checkbox */
+label[for="parking"],
+input[type="checkbox"] {
+    vertical-align: middle;
+}
+
+label[for="parking"] {
+    margin-right: 3px;
+}
+
+/* Filters - Buttons */
 .buttons-div {
     display: flex;
     gap: 10px;
@@ -55,86 +130,239 @@ form {
 
 .submit-btn,
 .reset-btn {
-    padding: 4px 8px;
-    border-radius: 6px;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 10px;
     border: none;
-    color: #ffffff;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.6s ease-in-out;
 }
 
-.parking-checkbox,
-.vote-div {
+.submit-btn {
+    background-color: #0E9F9F;
+}
+
+.reset-btn {
+    background-color: #10b981;
+}
+
+/* Filters - Button Hovers */
+.submit-btn:hover {
+    background-color: #0C8A8A;
+}
+
+.reset-btn:hover {
+    background-color: #059669;
+}
+
+/* Table */
+.table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-spacing: 0;
+    overflow: hidden;
+    line-height: 1.4;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Table - Angoli superiori */
+thead tr:first-child th:first-child {
+    border-top-left-radius: 12px;
+}
+
+thead tr:first-child th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Table - Angoli inferiori */
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* Table - Head */
+th {
+    background-color:#1a6b3989;
+    color: #1f2937;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+/* Table - Body */
+tbody tr:nth-child(even) {
+    background-color: #1a6b3944;
+}
+
+td {
+    /* border: 1px solid #dddddd; */
+    overflow: hidden;
+    padding: 8px;
+}
+
+td.hotel-name {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #1f2937;
+}
+
+td.description {
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+td.distance,
+td.vote,
+td.parking {
+    text-align: center;
+    white-space: nowrap;
+}
+
+td.distance {
+    text-align: right;
+}
+
+/* Table Not Found */
+td.not-found {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #5c977f;
+    color: #ffffff;
+    padding: 20px 10px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer Image */
+.footer-logo img {
+    width: 80px;
+}
+
+/* Footer - Links */
+.footer-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer-social {
     display: flex;
     gap: 10px;
 }
 
-.submit-btn {
-    background-color: rgb(10, 10, 201);
-    transition: background-color 0.5s ease-in-out;
+.footer-social a {
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-decoration: none;
 }
 
-.reset-btn {
-    background-color: rgb(210, 8, 8);
-    transition: background-color 0.5s ease-in-out;
+/* Footer - Links Hovers */
+.footer-links a:hover {
+    text-decoration: underline;
 }
 
-.submit-btn:hover,
-.reset-btn:hover {
-    cursor: pointer;
+.footer-social a:hover {
+    color: #f39c12;
 }
 
-.submit-btn:hover {
-    background-color: rgb(49, 49, 244);
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 12px;
 }
 
-.reset-btn:hover {
-    background-color: rgb(236, 54, 54);
+.footer p {
+    margin: 0;
 }
 
-label[for="parking"],
-input[type="checkbox"] {
-    vertical-align: middle;
+/* ICONS */
+.fa-solid.fa-square-check {
+    color: #4caf50;
+    font-size: 1.5rem;
 }
 
-select {
-    text-align: center;
-    width: 70%;
+.fa-solid.fa-square-xmark {
+    color: #f44336;
+    font-size: 1.5rem;
 }
 
-/* Table */
-table {
-    border-collapse: collapse;
-    width: 100%;
+.fa-regular.fa-star {
+    color: #f39c12;
 }
 
-th {
-    text-align: center;
-    background-color: #1a6b3989;
-    padding: 10px;  
+/* MEDIA QUERIES */
+/* Tablet */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
 }
 
-th, td {
-    border: 1px solid #00000058;
-} 
+/* Mobile */
+@media screen and (max-width: 500px) {
 
-td {
-    padding: 8px;
-}
+    h1 {
+        font-size: 1.5rem;
+    }
 
-tbody tr:nth-child(odd) {
-    background-color: #2fbd653b;
-}
+    p {
+        font-size: 1rem;
+        text-align: center;
+    }
 
-.vote,
-.parking {
-    text-align: center;
-}
+    .container {
+        width: 90%;
+    }
 
-.distance {
-    text-align: right;
-}
+    form {
+        flex-direction: column;
+        width: 100%;
+    }
 
-.not-found {
-    text-align: center;
-    font-weight: bold; 
-    padding: 10px;
+    .parking-checkbox {
+        margin-bottom: 10px;
+    }
+
 }
